@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Transition & Animation</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		.sample-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+		.sample-card { background: #f8fbff; border: 1px solid #d8e6ff; padding: 20px; border-radius: 8px; text-align: center; transition: all 0.3s ease; }
+		
+		/* Sample 1: Hover Zoom */
+		.zoom-card:hover { transform: scale(1.05); box-shadow: 0 8px 16px rgba(0, 87, 184, 0.2); }
+		
+		/* Sample 2: Rotating Spinner */
+		.spin-box { width: 50px; height: 50px; background: #0057b8; margin: 15px auto; border-radius: 8px; animation: spin 3s linear infinite; }
+		@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+		
+		/* Sample 3: Bouncing Button */
+		.bounce-btn { background: #0057b8; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; animation: bounce 1.5s infinite; }
+		@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+		
+		/* Sample 4: Pulsing Circle */
+		.pulse-circle { width: 50px; height: 50px; background: #28a745; border-radius: 50%; margin: 15px auto; animation: pulse 1.5s ease-in-out infinite; }
+		@keyframes pulse { 0%, 100% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.15); opacity: 1; } }
+		
+		/* Sample 5: Floating Shape */
+		.float-box { width: 50px; height: 50px; background: #ffc107; margin: 15px auto; border-radius: 50%; animation: floaty 2s ease-in-out infinite; }
+		@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+		
+		/* Sample 6: Color Shift */
+		.color-card { animation: colorShift 4s infinite alternate; }
+		@keyframes colorShift { 0% { background: #e3f2fd; } 100% { background: #e8f5e9; } }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Transition & Animation Samples</h1>
+		<p>Explore interactive CSS transition effects and keyframe animation samples below.</p>
+
+		<nav>
+			<a href="home.html">Home</a>
+			<a href="1.html">Page-1</a>
+			<a href="2.html">Page-2</a>
+			<a href="3.html">Page-3</a>
+			<a href="transition.html">Transition & Animation</a>
+			<a href="login.html">Login</a>
+			<a href="project.html">Project</a>
+			<a href="flexbox.html">Flexbox</a>
+		</nav>
+
+		<div class="sample-grid">
+			<!-- Sample 1 -->
+			<div class="sample-card zoom-card">
+				<h2>1. Hover Zoom</h2>
+				<p>Hover over this card to see a smooth scale transition.</p>
+			</div>
+
+			<!-- Sample 2 -->
+			<div class="sample-card">
+				<h2>2. Rotating Box</h2>
+				<div class="spin-box"></div>
+				<p>Continuous 360-degree keyframe rotation animation.</p>
+			</div>
+
+			<!-- Sample 3 -->
+			<div class="sample-card">
+				<h2>3. Bouncing Button</h2>
+				<p style="margin-bottom: 15px;">Attention-grabbing vertical bounce effect.</p>
+				<button type="button" class="bounce-btn">Click Me!</button>
+			</div>
+
+			<!-- Sample 4 -->
+			<div class="sample-card">
+				<h2>4. Pulsing Circle</h2>
+				<div class="pulse-circle"></div>
+				<p>Smooth expanding pulse animation.</p>
+			</div>
+
+			<!-- Sample 5 -->
+			<div class="sample-card">
+				<h2>5. Floating Element</h2>
+				<div class="float-box"></div>
+				<p>Gentle vertical floating keyframe motion.</p>
+			</div>
+
+			<!-- Sample 6 -->
+			<div class="sample-card color-card">
+				<h2>6. Color Shift</h2>
+				<p>Smooth alternating background color shift effect.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

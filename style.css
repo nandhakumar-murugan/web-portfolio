@@ -1,0 +1,10 @@
+body { font-family: sans-serif; margin: 20px; background: #f4f6f8; color: #333; }
+.container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
+nav { background: #0057b8; padding: 10px; border-radius: 6px; margin-bottom: 20px; }
+nav a { color: #fff; text-decoration: none; margin-right: 12px; font-weight: bold; }
+nav a:hover { text-decoration: underline; }
+.highlight-box, .motion-card { background: #eef4fc; padding: 15px; border-radius: 6px; margin: 15px 0; }
+table, th, td { border: 1px solid #ccc; border-collapse: collapse; padding: 8px; }
+img, video, audio { max-width: 100%; margin-top: 10px; }
+button, input[type="submit"] { background: #0057b8; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+input, select { padding: 6px; margin: 4px 0; }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Page</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Login Portal</h1>
+		<p>Secure login interface for Nandhakumar's platform. To reach out to me for access or inquiries, connect via <a href="https://www.linkedin.com/in/nandhakumar-murugan-807a80286/" target="_blank" rel="noopener noreferrer">LinkedIn</a> or visit <a href="https://premaailabs.tech/" target="_blank" rel="noopener noreferrer">Prema AI</a>.</p>
+
+		<nav>
+			<a href="home.html">Home</a>
+			<a href="1.html">Page-1</a>
+			<a href="2.html">Page-2</a>
+			<a href="3.html">Page-3</a>
+			<a href="transition.html">Transition & Animation</a>
+			<a href="login.html">Login</a>
+			<a href="project.html">Project</a>
+			<a href="flexbox.html">Flexbox</a>
+		</nav>
+
+		<div class="highlight-box">
+			<h2>User Authentication Form</h2>
+			<form onsubmit="alert('Login submitted successfully!'); return false;" style="display: grid; gap: 14px; max-width: 420px;">
+				<div>
+					<label for="email" style="display: block; font-weight: 600; margin-bottom: 4px;">Email / Username:</label>
+					<input id="email" name="email" type="email" placeholder="Enter your email or username" required style="width: 100%; box-sizing: border-box;">
+				</div>
+
+				<div>
+					<label for="password" style="display: block; font-weight: 600; margin-bottom: 4px;">Password:</label>
+					<input id="password" name="password" type="password" placeholder="Enter your password" required style="width: 100%; box-sizing: border-box;">
+				</div>
+
+				<div>
+					<label for="role" style="display: block; font-weight: 600; margin-bottom: 4px;">Select Role:</label>
+					<select id="role" name="role" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+						<option value="student">Student</option>
+						<option value="developer">Developer</option>
+						<option value="admin">Administrator</option>
+					</select>
+				</div>
+
+				<div style="display: flex; justify-content: space-between; align-items: center;">
+					<label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+						<input type="checkbox" id="remember" name="remember">
+						<span>Remember Me</span>
+					</label>
+					<a href="#" onclick="alert('Password reset link sent to your registered email.'); return false;">Forgot Password?</a>
+				</div>
+
+				<div style="display: flex; gap: 10px; margin-top: 10px;">
+					<button type="submit" class="cta-btn" style="flex: 1;">Login</button>
+					<button type="reset" class="cta-btn" style="background: #6c757d; flex: 1;">Reset</button>
+				</div>
+
+				<p style="margin-top: 15px; text-align: center;">Don't have an account? <a href="#" onclick="alert('Redirecting to Registration Page...'); return false;">Register / Sign Up</a></p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

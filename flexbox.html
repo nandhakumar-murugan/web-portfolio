@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flexbox Demo</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		.flex-demo { background: #eef4fc; border: 1px solid #cfe0ff; border-radius: 6px; padding: 15px; margin: 15px 0; }
+		.flex-box { background: #0057b8; color: white; padding: 12px 18px; border-radius: 4px; font-weight: bold; text-align: center; }
+		
+		/* Demo 1: Row with Space Between */
+		.demo-row { display: flex; justify-content: space-between; gap: 10px; }
+		
+		/* Demo 2: Center Alignment */
+		.demo-center { display: flex; justify-content: center; align-items: center; min-height: 100px; gap: 15px; }
+		
+		/* Demo 3: Column Direction */
+		.demo-column { display: flex; flex-direction: column; gap: 10px; }
+		
+		/* Demo 4: Flex Wrap */
+		.demo-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+		
+		/* Demo 5: Flex Grow */
+		.demo-grow { display: flex; gap: 10px; }
+		.grow-1 { flex: 1; }
+		.grow-2 { flex: 2; background: #28a745; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>CSS Flexbox Basics</h1>
+		<p>Explore fundamental Flexbox layout techniques for aligning and distributing elements cleanly.</p>
+
+		<nav>
+			<a href="home.html">Home</a>
+			<a href="1.html">Page-1</a>
+			<a href="2.html">Page-2</a>
+			<a href="3.html">Page-3</a>
+			<a href="transition.html">Transition & Animation</a>
+			<a href="login.html">Login</a>
+			<a href="project.html">Project</a>
+			<a href="flexbox.html">Flexbox</a>
+		</nav>
+
+		<!-- Sample 1 -->
+		<div class="flex-demo">
+			<h2>1. Flex Row (Space-Between)</h2>
+			<p><code>display: flex; justify-content: space-between;</code> distributes items evenly along the row.</p>
+			<div class="demo-row">
+				<div class="flex-box">Item 1</div>
+				<div class="flex-box">Item 2</div>
+				<div class="flex-box">Item 3</div>
+			</div>
+		</div>
+
+		<!-- Sample 2 -->
+		<div class="flex-demo">
+			<h2>2. Centered Flexbox</h2>
+			<p><code>justify-content: center; align-items: center;</code> centers content horizontally and vertically.</p>
+			<div class="demo-center">
+				<div class="flex-box">Centered Item A</div>
+				<div class="flex-box">Centered Item B</div>
+			</div>
+		</div>
+
+		<!-- Sample 3 -->
+		<div class="flex-demo">
+			<h2>3. Flex Column Layout</h2>
+			<p><code>flex-direction: column;</code> stacks items vertically in a column.</p>
+			<div class="demo-column">
+				<div class="flex-box">Top Block</div>
+				<div class="flex-box">Middle Block</div>
+				<div class="flex-box">Bottom Block</div>
+			</div>
+		</div>
+
+		<!-- Sample 4 -->
+		<div class="flex-demo">
+			<h2>4. Flex Wrap</h2>
+			<p><code>flex-wrap: wrap;</code> allows items to wrap into the next line when space shrinks.</p>
+			<div class="demo-wrap">
+				<div class="flex-box">Box 1</div>
+				<div class="flex-box">Box 2</div>
+				<div class="flex-box">Box 3</div>
+				<div class="flex-box">Box 4</div>
+				<div class="flex-box">Box 5</div>
+			</div>
+		</div>
+
+		<!-- Sample 5 -->
+		<div class="flex-demo">
+			<h2>5. Flex Grow Ratios</h2>
+			<p><code>flex: 1;</code> and <code>flex: 2;</code> allocate flexible width ratios among children.</p>
+			<div class="demo-grow">
+				<div class="flex-box grow-1">Flex 1 (Standard)</div>
+				<div class="flex-box grow-2">Flex 2 (Double Width)</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
