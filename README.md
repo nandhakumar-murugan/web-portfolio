@@ -25,6 +25,7 @@ This project is a multi-page web platform demonstrating modern HTML5 semantics, 
 | **`login.html`** | User authentication portal with role selector (Student/Developer/Admin), Remember Me checkbox, and Password Reset options. |
 | **`project.html`** | Comprehensive showcase cards summarizing all topics covered across the site. |
 | **`flexbox.html`** | 5 fundamental CSS Flexbox layout techniques (Space-Between Row, Centering, Column Layout, Flex Wrap, Flex Grow Ratios). |
+| **`get-style.html`** | Styling without CSS using pure HTML attributes (`bgcolor`, `align`, `font`, `border`) and dynamic GET query parameter forms. |
 | **`style.css`** | Clean, minimal stylesheet styling navigation, container bounds, typography, tables, and media elements. |
 
 ---
