@@ -8,12 +8,16 @@
 	<style>
 		.js-demo-box { background: #eef4fc; border: 1px solid #cfe0ff; border-radius: 6px; padding: 15px; margin: 15px 0; }
 		.target-box { padding: 20px; border-radius: 6px; background: #ffffff; border: 2px solid #0057b8; text-align: center; margin: 10px 0; transition: all 0.3s ease; }
+		.js-error { color: #dc3545; font-size: 13px; margin-top: 3px; display: none; }
+		.js-success { color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; display: none; margin-top: 10px; }
+		input.js-invalid, select.js-invalid { border-color: #dc3545 !important; }
+		input.js-valid, select.js-valid { border-color: #28a745 !important; }
 	</style>
 </head>
 <body>
 	<div class="container" id="appContainer">
-		<h1>JavaScript DOM & GET Styling</h1>
-		<p>Demonstrating dynamic DOM style manipulation, interactive event handling, and GET URL parameter parsing using pure JavaScript.</p>
+		<h1>JavaScript DOM, Styling & Validation</h1>
+		<p>Demonstrating dynamic DOM style manipulation, interactive event handling, GET parameter parsing, and pure JavaScript form validation.</p>
 
 		<nav>
 			<a href="home.html">Home</a>
@@ -57,9 +61,44 @@
 			</div>
 		</div>
 
-		<!-- Demo 3: GET Query Parameter Processing in JavaScript -->
+		<!-- Demo 3: Pure JavaScript Form Validation -->
 		<div class="js-demo-box">
-			<h2>3. GET URL Query Parameter Processor in JS</h2>
+			<h2>3. Pure JavaScript Form Validation & Error Handling</h2>
+			<p>Real-time client-side validation built entirely with JavaScript event handlers and Regex pattern matching.</p>
+			
+			<div id="valSuccessBox" class="js-success">
+				<b>✓ Form Validated!</b> All inputs passed JavaScript validation rules.
+			</div>
+
+			<form id="jsValidationForm" onsubmit="return handleJsFormSubmit(event)" novalidate style="display: grid; gap: 12px; max-width: 450px; margin-top: 10px;">
+				<div>
+					<label for="jsName"><b>Full Name:</b></label>
+					<input type="text" id="jsName" placeholder="Enter your full name (min 3 letters)" style="width: 100%; box-sizing: border-box;" oninput="validateName()">
+					<div id="nameErr" class="js-error">Full name must contain at least 3 letters and no numbers.</div>
+				</div>
+
+				<div>
+					<label for="jsEmail"><b>Email Address:</b></label>
+					<input type="email" id="jsEmail" placeholder="e.g. user@domain.com" style="width: 100%; box-sizing: border-box;" oninput="validateEmail()">
+					<div id="emailErr" class="js-error">Please enter a valid email address format (e.g. name@example.com).</div>
+				</div>
+
+				<div>
+					<label for="jsAge"><b>Age (18 - 99):</b></label>
+					<input type="number" id="jsAge" placeholder="Enter your age" style="width: 100%; box-sizing: border-box;" oninput="validateAge()">
+					<div id="ageErr" class="js-error">Age must be a number between 18 and 99.</div>
+				</div>
+
+				<div style="display: flex; gap: 10px; margin-top: 5px;">
+					<button type="submit">Submit & Validate</button>
+					<button type="reset" onclick="clearJsValidation()" style="background: #6c757d;">Clear</button>
+				</div>
+			</form>
+		</div>
+
+		<!-- Demo 4: GET Query Parameter Processing in JavaScript -->
+		<div class="js-demo-box">
+			<h2>4. GET URL Query Parameter Processor in JS</h2>
 			<p>Submit the GET form below to pass parameters (e.g. <code>?themeColor=purple&font=24</code>). JavaScript parses <code>URLSearchParams</code> to apply them dynamically.</p>
 
 			<form method="GET" action="javascript.html" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px;">
@@ -89,7 +128,7 @@
 
 	</div>
 
-	<!-- JavaScript DOM & GET Script -->
+	<!-- JavaScript DOM, Validation & GET Script -->
 	<script>
 		// Function 1: Theme Switcher
 		function setTheme(bgColor, textColor, cardBg) {
@@ -126,7 +165,97 @@
 			}
 		}
 
-		// Function 5: Parse GET URL Parameters on Page Load
+		// Function 5: Form Validation Logic
+		function validateName() {
+			var input = document.getElementById('jsName');
+			var err = document.getElementById('nameErr');
+			var val = input.value.trim();
+			var nameRegex = /^[a-zA-Z\s]{3,}$/;
+
+			if (!nameRegex.test(val) && val.length > 0) {
+				err.style.display = 'block';
+				input.classList.add('js-invalid');
+				input.classList.remove('js-valid');
+				return false;
+			} else {
+				err.style.display = 'none';
+				input.classList.remove('js-invalid');
+				if (val.length >= 3) input.classList.add('js-valid');
+				return true;
+			}
+		}
+
+		function validateEmail() {
+			var input = document.getElementById('jsEmail');
+			var err = document.getElementById('emailErr');
+			var val = input.value.trim();
+			var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+			if (!emailRegex.test(val) && val.length > 0) {
+				err.style.display = 'block';
+				input.classList.add('js-invalid');
+				input.classList.remove('js-valid');
+				return false;
+			} else {
+				err.style.display = 'none';
+				input.classList.remove('js-invalid');
+				if (emailRegex.test(val)) input.classList.add('js-valid');
+				return true;
+			}
+		}
+
+		function validateAge() {
+			var input = document.getElementById('jsAge');
+			var err = document.getElementById('ageErr');
+			var val = parseInt(input.value, 10);
+
+			if ((isNaN(val) || val < 18 || val > 99) && input.value.length > 0) {
+				err.style.display = 'block';
+				input.classList.add('js-invalid');
+				input.classList.remove('js-valid');
+				return false;
+			} else {
+				err.style.display = 'none';
+				input.classList.remove('js-invalid');
+				if (!isNaN(val) && val >= 18 && val <= 99) input.classList.add('js-valid');
+				return true;
+			}
+		}
+
+		function clearJsValidation() {
+			document.getElementById('nameErr').style.display = 'none';
+			document.getElementById('emailErr').style.display = 'none';
+			document.getElementById('ageErr').style.display = 'none';
+			document.getElementById('valSuccessBox').style.display = 'none';
+			document.getElementById('jsName').classList.remove('js-invalid', 'js-valid');
+			document.getElementById('jsEmail').classList.remove('js-invalid', 'js-valid');
+			document.getElementById('jsAge').classList.remove('js-invalid', 'js-valid');
+		}
+
+		function handleJsFormSubmit(e) {
+			e.preventDefault();
+			var vName = validateName();
+			var vEmail = validateEmail();
+			var vAge = validateAge();
+
+			var nameVal = document.getElementById('jsName').value.trim();
+			var emailVal = document.getElementById('jsEmail').value.trim();
+			var ageVal = document.getElementById('jsAge').value;
+
+			if (!nameVal) { document.getElementById('nameErr').style.display = 'block'; document.getElementById('jsName').classList.add('js-invalid'); }
+			if (!emailVal) { document.getElementById('emailErr').style.display = 'block'; document.getElementById('jsEmail').classList.add('js-invalid'); }
+			if (!ageVal) { document.getElementById('ageErr').style.display = 'block'; document.getElementById('jsAge').classList.add('js-invalid'); }
+
+			if (vName && vEmail && vAge && nameVal && emailVal && ageVal) {
+				document.getElementById('valSuccessBox').style.display = 'block';
+				return true;
+			} else {
+				document.getElementById('valSuccessBox').style.display = 'none';
+				return false;
+			}
+		}
+
+		// Function 6: Parse GET URL Parameters on Page Load
 		window.addEventListener('DOMContentLoaded', function() {
 			var urlParams = new URLSearchParams(window.location.search);
 			var colorParam = urlParams.get('themeColor');
