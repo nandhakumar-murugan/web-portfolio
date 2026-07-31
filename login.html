@@ -5,6 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login Page</title>
 	<link rel="stylesheet" href="style.css">
+	<style>
+		.error-text { color: #dc3545; font-size: 13px; margin-top: 4px; display: none; }
+		.success-box { color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 12px; border-radius: 6px; display: none; margin-top: 15px; }
+		input.invalid { border-color: #dc3545 !important; }
+		input.valid { border-color: #28a745 !important; }
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -21,19 +27,30 @@
 			<a href="project.html">Project</a>
 			<a href="flexbox.html">Flexbox</a>
 			<a href="get-style.html">GET & HTML Style</a>
+			<a href="javascript.html">JavaScript</a>
 		</nav>
 
 		<div class="highlight-box">
 			<h2>User Authentication Form</h2>
-			<form onsubmit="alert('Login submitted successfully!'); return false;" style="display: grid; gap: 14px; max-width: 420px;">
+			
+			<div id="formSuccess" class="success-box">
+				<b>✓ Login Successful!</b> Welcome back to Nandhakumar's Web Portal.
+			</div>
+
+			<form id="loginForm" onsubmit="return validateLoginForm(event)" novalidate style="display: grid; gap: 14px; max-width: 420px;">
 				<div>
 					<label for="email" style="display: block; font-weight: 600; margin-bottom: 4px;">Email / Username:</label>
-					<input id="email" name="email" type="email" placeholder="Enter your email or username" required style="width: 100%; box-sizing: border-box;">
+					<input id="email" name="email" type="text" placeholder="Enter email or username (min 3 chars)" style="width: 100%; box-sizing: border-box;" oninput="validateEmailField()">
+					<div id="emailError" class="error-text">Please enter a valid email address or username (at least 3 characters).</div>
 				</div>
 
 				<div>
 					<label for="password" style="display: block; font-weight: 600; margin-bottom: 4px;">Password:</label>
-					<input id="password" name="password" type="password" placeholder="Enter your password" required style="width: 100%; box-sizing: border-box;">
+					<div style="position: relative;">
+						<input id="password" name="password" type="password" placeholder="Enter password (min 6 characters)" style="width: 100%; box-sizing: border-box; padding-right: 40px;" oninput="validatePasswordField()">
+						<button type="button" onclick="togglePassword()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 4px;" title="Show/Hide Password">👁️</button>
+					</div>
+					<div id="passwordError" class="error-text">Password must be at least 6 characters long.</div>
 				</div>
 
 				<div>
@@ -55,12 +72,98 @@
 
 				<div style="display: flex; gap: 10px; margin-top: 10px;">
 					<button type="submit" class="cta-btn" style="flex: 1;">Login</button>
-					<button type="reset" class="cta-btn" style="background: #6c757d; flex: 1;">Reset</button>
+					<button type="reset" class="cta-btn" onclick="resetValidation()" style="background: #6c757d; flex: 1;">Reset</button>
 				</div>
 
 				<p style="margin-top: 15px; text-align: center;">Don't have an account? <a href="#" onclick="alert('Redirecting to Registration Page...'); return false;">Register / Sign Up</a></p>
 			</form>
 		</div>
 	</div>
+
+	<script>
+		function validateEmailField() {
+			var emailInput = document.getElementById('email');
+			var emailError = document.getElementById('emailError');
+			var val = emailInput.value.trim();
+			
+			var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			var isValid = emailRegex.test(val) || val.length >= 3;
+
+			if (!isValid && val.length > 0) {
+				emailError.style.display = 'block';
+				emailInput.classList.add('invalid');
+				emailInput.classList.remove('valid');
+				return false;
+			} else {
+				emailError.style.display = 'none';
+				emailInput.classList.remove('invalid');
+				if (val.length >= 3) emailInput.classList.add('valid');
+				return true;
+			}
+		}
+
+		function validatePasswordField() {
+			var passwordInput = document.getElementById('password');
+			var passwordError = document.getElementById('passwordError');
+			var val = passwordInput.value;
+
+			if (val.length < 6 && val.length > 0) {
+				passwordError.style.display = 'block';
+				passwordInput.classList.add('invalid');
+				passwordInput.classList.remove('valid');
+				return false;
+			} else {
+				passwordError.style.display = 'none';
+				passwordInput.classList.remove('invalid');
+				if (val.length >= 6) passwordInput.classList.add('valid');
+				return true;
+			}
+		}
+
+		function togglePassword() {
+			var pwd = document.getElementById('password');
+			if (pwd.type === 'password') {
+				pwd.type = 'text';
+			} else {
+				pwd.type = 'password';
+			}
+		}
+
+		function resetValidation() {
+			document.getElementById('emailError').style.display = 'none';
+			document.getElementById('passwordError').style.display = 'none';
+			document.getElementById('formSuccess').style.display = 'none';
+			document.getElementById('email').classList.remove('invalid', 'valid');
+			document.getElementById('password').classList.remove('invalid', 'valid');
+		}
+
+		function validateLoginForm(e) {
+			e.preventDefault();
+			var isEmailValid = validateEmailField();
+			var isPasswordValid = validatePasswordField();
+			var emailVal = document.getElementById('email').value.trim();
+			var passwordVal = document.getElementById('password').value;
+
+			if (!emailVal) {
+				document.getElementById('emailError').style.display = 'block';
+				document.getElementById('email').classList.add('invalid');
+				isEmailValid = false;
+			}
+
+			if (!passwordVal) {
+				document.getElementById('passwordError').style.display = 'block';
+				document.getElementById('password').classList.add('invalid');
+				isPasswordValid = false;
+			}
+
+			if (isEmailValid && isPasswordValid && emailVal.length >= 3 && passwordVal.length >= 6) {
+				document.getElementById('formSuccess').style.display = 'block';
+				return true;
+			} else {
+				document.getElementById('formSuccess').style.display = 'none';
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

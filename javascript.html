@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JavaScript DOM & GET Styling</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		.js-demo-box { background: #eef4fc; border: 1px solid #cfe0ff; border-radius: 6px; padding: 15px; margin: 15px 0; }
+		.target-box { padding: 20px; border-radius: 6px; background: #ffffff; border: 2px solid #0057b8; text-align: center; margin: 10px 0; transition: all 0.3s ease; }
+	</style>
+</head>
+<body>
+	<div class="container" id="appContainer">
+		<h1>JavaScript DOM & GET Styling</h1>
+		<p>Demonstrating dynamic DOM style manipulation, interactive event handling, and GET URL parameter parsing using pure JavaScript.</p>
+
+		<nav>
+			<a href="home.html">Home</a>
+			<a href="1.html">Page-1</a>
+			<a href="2.html">Page-2</a>
+			<a href="3.html">Page-3</a>
+			<a href="transition.html">Transition & Animation</a>
+			<a href="login.html">Login</a>
+			<a href="project.html">Project</a>
+			<a href="flexbox.html">Flexbox</a>
+			<a href="get-style.html">GET & HTML Style</a>
+			<a href="javascript.html">JavaScript</a>
+		</nav>
+
+		<!-- Demo 1: Interactive Theme Switcher via JavaScript -->
+		<div class="js-demo-box">
+			<h2>1. Interactive Theme Switcher (JS style.backgroundColor)</h2>
+			<p>Click the buttons below to dynamically mutate DOM styles using <code>element.style</code> properties in JavaScript.</p>
+			<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+				<button type="button" onclick="setTheme('#f4f6f8', '#333333', '#ffffff')">Default Light</button>
+				<button type="button" onclick="setTheme('#1e1e2e', '#f8f8f2', '#2b2b3d')" style="background: #2b2b3d;">Dark Mode</button>
+				<button type="button" onclick="setTheme('#e0f7fa', '#004d40', '#ffffff')" style="background: #00796b;">Ocean Blue</button>
+				<button type="button" onclick="setTheme('#fff3e0', '#e65100', '#ffffff')" style="background: #ef6c00;">Sunset Warm</button>
+			</div>
+		</div>
+
+		<!-- Demo 2: Dynamic Font Size & Color Manipulator -->
+		<div class="js-demo-box">
+			<h2>2. Dynamic Font & Style Manipulator</h2>
+			<div id="demoTextCard" class="target-box">
+				<h3 id="demoText" style="margin: 0; font-size: 20px;">Nandhakumar's JavaScript Style Card</h3>
+				<p>Use the control buttons below to manipulate this card's inline CSS via JS.</p>
+			</div>
+
+			<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+				<button type="button" onclick="changeFontSize(4)">A+ Increase Font</button>
+				<button type="button" onclick="changeFontSize(-4)">A- Decrease Font</button>
+				<button type="button" onclick="changeBoxColor('#28a745')">Green Border</button>
+				<button type="button" onclick="changeBoxColor('#dc3545')">Red Border</button>
+				<button type="button" onclick="toggleVisibility()">Toggle Hide / Show</button>
+			</div>
+		</div>
+
+		<!-- Demo 3: GET Query Parameter Processing in JavaScript -->
+		<div class="js-demo-box">
+			<h2>3. GET URL Query Parameter Processor in JS</h2>
+			<p>Submit the GET form below to pass parameters (e.g. <code>?themeColor=purple&font=24</code>). JavaScript parses <code>URLSearchParams</code> to apply them dynamically.</p>
+
+			<form method="GET" action="javascript.html" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px;">
+				<label for="themeColor"><b>Select Color:</b></label>
+				<select id="themeColor" name="themeColor">
+					<option value="#6f42c1">Purple (#6f42c1)</option>
+					<option value="#fd7e14">Orange (#fd7e14)</option>
+					<option value="#20c997">Teal (#20c997)</option>
+					<option value="#d63384">Pink (#d63384)</option>
+				</select>
+
+				<label for="fontSize"><b>Select Size:</b></label>
+				<select id="fontSize" name="fontSize">
+					<option value="18">18px</option>
+					<option value="24">24px</option>
+					<option value="30">30px</option>
+				</select>
+
+				<button type="submit">Apply GET Request</button>
+				<button type="button" onclick="window.location.href='javascript.html'" style="background: #6c757d;">Reset GET</button>
+			</form>
+
+			<div id="getOutputCard" class="target-box" style="margin-top: 15px;">
+				<p id="getOutputText" style="margin: 0; font-weight: bold;">Status: Waiting for GET parameters...</p>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- JavaScript DOM & GET Script -->
+	<script>
+		// Function 1: Theme Switcher
+		function setTheme(bgColor, textColor, cardBg) {
+			document.body.style.backgroundColor = bgColor;
+			document.body.style.color = textColor;
+			var container = document.getElementById('appContainer');
+			if (container) {
+				container.style.backgroundColor = cardBg;
+				container.style.color = textColor;
+			}
+		}
+
+		// Function 2: Font Resizer
+		var currentFontSize = 20;
+		function changeFontSize(delta) {
+			currentFontSize += delta;
+			if (currentFontSize < 12) currentFontSize = 12;
+			if (currentFontSize > 40) currentFontSize = 40;
+			document.getElementById('demoText').style.fontSize = currentFontSize + 'px';
+		}
+
+		// Function 3: Border Color Changer
+		function changeBoxColor(color) {
+			document.getElementById('demoTextCard').style.borderColor = color;
+		}
+
+		// Function 4: Toggle Visibility
+		function toggleVisibility() {
+			var card = document.getElementById('demoTextCard');
+			if (card.style.display === 'none') {
+				card.style.display = 'block';
+			} else {
+				card.style.display = 'none';
+			}
+		}
+
+		// Function 5: Parse GET URL Parameters on Page Load
+		window.addEventListener('DOMContentLoaded', function() {
+			var urlParams = new URLSearchParams(window.location.search);
+			var colorParam = urlParams.get('themeColor');
+			var sizeParam = urlParams.get('fontSize');
+
+			if (colorParam || sizeParam) {
+				var outputCard = document.getElementById('getOutputCard');
+				var outputText = document.getElementById('getOutputText');
+
+				if (colorParam) {
+					outputCard.style.borderColor = colorParam;
+					outputCard.style.backgroundColor = colorParam + '15'; // 15% opacity tint
+				}
+				if (sizeParam) {
+					outputText.style.fontSize = sizeParam + 'px';
+				}
+
+				outputText.innerText = 'GET Parameters Applied! Color: ' + (colorParam || 'default') + ', Font Size: ' + (sizeParam || 'default') + 'px';
+			}
+		});
+	</script>
+</body>
+</html>
