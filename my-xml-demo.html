@@ -8,7 +8,8 @@
             .then(str => {
                 let xml = new DOMParser().parseFromString(str, "text/xml");
                 let name = xml.querySelector("name").textContent;
-                document.getElementById("out").innerText = name;
+                let age = xml.querySelector("age").textContent;
+                document.getElementById("out").innerText = name + " is " + age + " years old";
             });
     }
 </script>
