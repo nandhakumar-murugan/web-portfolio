@@ -1,0 +1,14 @@
+<button onclick="read()">Read XML</button>
+<h1 id="out"></h1>
+
+<script>
+    function read() {
+        fetch('data.xml')
+            .then(res => res.text())
+            .then(str => {
+                let xml = new DOMParser().parseFromString(str, "text/xml");
+                let name = xml.querySelector("name").textContent;
+                document.getElementById("out").innerText = name;
+            });
+    }
+</script>
