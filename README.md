@@ -26,7 +26,7 @@ This project is a multi-page web platform demonstrating modern HTML5 semantics, 
 | **`project.html`** | Comprehensive showcase cards summarizing all topics covered across the site. |
 | **`flexbox.html`** | 5 fundamental CSS Flexbox layout techniques (Space-Between Row, Centering, Column Layout, Flex Wrap, Flex Grow Ratios). |
 | **`get-style.html`** | Styling without CSS using pure HTML attributes (`bgcolor`, `align`, `font`, `border`) and dynamic GET query parameter forms. |
-| **`javascript.html`** | Dynamic DOM style mutation (`element.style`), font resizer, theme switcher, and GET URL parameter parsing in JS. |
+| **`javascript.html`** | Dynamic DOM style mutation (`element.style`), font resizer, theme switcher, Array `splice()` explorer, form validation, and GET parameter parsing in JS. |
 | **`style.css`** | Clean, minimal stylesheet styling navigation, container bounds, typography, tables, and media elements. |
 
 ---

@@ -3,22 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JavaScript DOM, Validation & Slice</title>
+	<title>JavaScript DOM, Validation & Splice</title>
 	<link rel="stylesheet" href="style.css">
-	<style>
-		.js-demo-box { background: #eef4fc; border: 1px solid #cfe0ff; border-radius: 6px; padding: 15px; margin: 15px 0; }
-		.target-box { padding: 20px; border-radius: 6px; background: #ffffff; border: 2px solid #0057b8; text-align: center; margin: 10px 0; transition: all 0.3s ease; }
-		.js-error { color: #dc3545; font-size: 13px; margin-top: 3px; display: none; }
-		.js-success { color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; display: none; margin-top: 10px; }
-		input.js-invalid, select.js-invalid { border-color: #dc3545 !important; }
-		input.js-valid, select.js-valid { border-color: #28a745 !important; }
-		.slice-result-box { background: #ffffff; border: 1px solid #0057b8; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 15px; margin-top: 10px; color: #0057b8; word-break: break-all; }
-	</style>
+    
 </head>
 <body>
 	<div class="container" id="appContainer">
-		<h1>JavaScript DOM, Styling, Validation & Slice</h1>
-		<p>Demonstrating dynamic DOM manipulation, form validation, GET parameter parsing, and String/Array <code>slice()</code> methods in JavaScript.</p>
+		<h1>JavaScript DOM, Styling, Validation & Splice</h1>
+		<p>Demonstrating dynamic DOM manipulation, form validation, GET parameter parsing, and the array <code>splice()</code> method in JavaScript.</p>
 
 		<nav>
 			<a href="home.html">Home</a>
@@ -37,11 +29,11 @@
 		<div class="js-demo-box">
 			<h2>1. Interactive Theme Switcher (JS style.backgroundColor)</h2>
 			<p>Click the buttons below to dynamically mutate DOM styles using <code>element.style</code> properties in JavaScript.</p>
-			<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+			<div class="flex-row wrap-row mt-10">
 				<button type="button" onclick="setTheme('#f4f6f8', '#333333', '#ffffff')">Default Light</button>
-				<button type="button" onclick="setTheme('#1e1e2e', '#f8f8f2', '#2b2b3d')" style="background: #2b2b3d;">Dark Mode</button>
-				<button type="button" onclick="setTheme('#e0f7fa', '#004d40', '#ffffff')" style="background: #00796b;">Ocean Blue</button>
-				<button type="button" onclick="setTheme('#fff3e0', '#e65100', '#ffffff')" style="background: #ef6c00;">Sunset Warm</button>
+				<button type="button" onclick="setTheme('#1e1e2e', '#f8f8f2', '#2b2b3d')" class="btn-dark">Dark Mode</button>
+				<button type="button" onclick="setTheme('#e0f7fa', '#004d40', '#ffffff')" class="btn-ocean">Ocean Blue</button>
+				<button type="button" onclick="setTheme('#fff3e0', '#e65100', '#ffffff')" class="btn-orange">Sunset Warm</button>
 			</div>
 		</div>
 
@@ -49,11 +41,11 @@
 		<div class="js-demo-box">
 			<h2>2. Dynamic Font & Style Manipulator</h2>
 			<div id="demoTextCard" class="target-box">
-				<h3 id="demoText" style="margin: 0; font-size: 20px;">Nandhakumar's JavaScript Style Card</h3>
+				<h3 id="demoText" class="demo-title">Nandhakumar's JavaScript Style Card</h3>
 				<p>Use the control buttons below to manipulate this card's inline CSS via JS.</p>
 			</div>
 
-			<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+			<div class="flex-row wrap-row">
 				<button type="button" onclick="changeFontSize(4)">A+ Increase Font</button>
 				<button type="button" onclick="changeFontSize(-4)">A- Decrease Font</button>
 				<button type="button" onclick="changeBoxColor('#28a745')">Green Border</button>
@@ -62,49 +54,47 @@
 			</div>
 		</div>
 
-		<!-- Demo 3: JavaScript slice() Method Explorer -->
+		<!-- Demo 3: JavaScript Array splice() Method Explorer -->
 		<div class="js-demo-box">
-			<h2>3. JavaScript String & Array <code>slice()</code> Explorer</h2>
-			<p>The <code>slice(start, end)</code> method extracts a portion of a string or array without modifying the original data.</p>
+			<h2>3. JavaScript Array <code>splice()</code> Method Explorer</h2>
+			<p>The <code>splice(start, deleteCount, item1, item2, ...)</code> method modifies an array <b>in-place</b> by removing, replacing, or inserting elements.</p>
 
-			<!-- String Slice Demo -->
-			<div style="background: #ffffff; padding: 15px; border-radius: 6px; border: 1px solid #ccc; margin-top: 10px;">
-				<h3>A. String <code>slice()</code> Demo</h3>
-				<label for="sliceTextInput"><b>Original String:</b></label>
-				<input type="text" id="sliceTextInput" value="Nandhakumar Murugan - Cyber Security Student" style="width: 100%; box-sizing: border-box; margin: 6px 0 10px;" oninput="updateStringSlice()">
+			<div class="panel-card">
+				<p class="panel-lead">
+					<b>Current Array:</b> <code id="currentArrayDisplay" class="code-highlight">["HTML", "CSS", "JavaScript", "Python", "Cyber Security"]</code>
+				</p>
 
-				<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-					<label for="sliceStart"><b>Start Index:</b></label>
-					<input type="number" id="sliceStart" value="0" style="width: 70px;" oninput="updateStringSlice()">
+				<!-- Splice Controls -->
+				<div class="flex-row wrap-row align-center mb-12">
+					<label for="spliceStart"><b>Start Index:</b></label>
+					<input type="number" id="spliceStart" value="1" class="small-input">
 
-					<label for="sliceEnd"><b>End Index:</b> (Optional)</label>
-					<input type="number" id="sliceEnd" value="11" style="width: 70px;" oninput="updateStringSlice()">
+					<label for="spliceDeleteCount"><b>Delete Count:</b></label>
+					<input type="number" id="spliceDeleteCount" value="1" class="small-input">
+
+					<label for="spliceItems"><b>New Items (comma-separated):</b></label>
+					<input type="text" id="spliceItems" placeholder="e.g. React, SQL" class="flex-input">
 				</div>
 
-				<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
-					<button type="button" onclick="applySlicePreset(0, 11)">First Name: slice(0, 11)</button>
-					<button type="button" onclick="applySlicePreset(12, 19)">Last Name: slice(12, 19)</button>
-					<button type="button" onclick="applySlicePreset(-16, undefined)">Negative Index: slice(-16)</button>
+				<div class="flex-row wrap-row mb-15">
+					<button type="button" onclick="executeCustomSplice()">Run Custom Splice()</button>
+					<button type="button" onclick="resetSpliceArray()" class="btn-reset">Reset Original Array</button>
 				</div>
 
-				<div class="slice-result-box" id="stringSliceResult">
-					Result: str.slice(0, 11) =&gt; "Nandhakumar"
-				</div>
-			</div>
-
-			<!-- Array Slice Demo -->
-			<div style="background: #ffffff; padding: 15px; border-radius: 6px; border: 1px solid #ccc; margin-top: 15px;">
-				<h3>B. Array <code>slice()</code> Demo</h3>
-				<p><b>Original Array:</b> <code>["HTML", "CSS", "JavaScript", "Python", "Cyber Security"]</code></p>
-				
-				<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-					<button type="button" onclick="updateArraySlice(0, 2)">Top 2 Skills: slice(0, 2)</button>
-					<button type="button" onclick="updateArraySlice(2, 5)">Remaining Skills: slice(2, 5)</button>
-					<button type="button" onclick="updateArraySlice(-2, undefined)">Last 2 Elements: slice(-2)</button>
+				<!-- Quick Presets -->
+				<p class="small-margin"><b>Quick Splice Operation Presets:</b></p>
+				<div class="flex-row wrap-row">
+					<button type="button" onclick="applySplicePreset(1, 2)">Remove 2 items at index 1: splice(1, 2)</button>
+					<button type="button" onclick="applySplicePreset(2, 0, 'React')">Insert "React" at index 2: splice(2, 0, "React")</button>
+					<button type="button" onclick="applySplicePreset(3, 1, 'Node.js')">Replace index 3 with "Node.js": splice(3, 1, "Node.js")</button>
 				</div>
 
-				<div class="slice-result-box" id="arraySliceResult">
-					Result: arr.slice(0, 2) =&gt; ["HTML", "CSS"]
+				<!-- Splice Result Outputs -->
+				<div class="splice-result-box" id="spliceReturnOutput">
+					Returned (Removed Elements): []
+				</div>
+				<div class="splice-result-box splice-result-success" id="spliceArrayOutput">
+					Updated Array: ["HTML", "CSS", "JavaScript", "Python", "Cyber Security"]
 				</div>
 			</div>
 		</div>
@@ -118,28 +108,28 @@
 				<b>✓ Form Validated!</b> All inputs passed JavaScript validation rules.
 			</div>
 
-			<form id="jsValidationForm" onsubmit="return handleJsFormSubmit(event)" novalidate style="display: grid; gap: 12px; max-width: 450px; margin-top: 10px;">
+			<form id="jsValidationForm" class="form-grid max-w-450 mt-10" onsubmit="return handleJsFormSubmit(event)" novalidate>
 				<div>
 					<label for="jsName"><b>Full Name:</b></label>
-					<input type="text" id="jsName" placeholder="Enter your full name (min 3 letters)" style="width: 100%; box-sizing: border-box;" oninput="validateName()">
+					<input type="text" id="jsName" class="full-width" placeholder="Enter your full name (min 3 letters)" oninput="validateName()">
 					<div id="nameErr" class="js-error">Full name must contain at least 3 letters and no numbers.</div>
 				</div>
 
 				<div>
 					<label for="jsEmail"><b>Email Address:</b></label>
-					<input type="email" id="jsEmail" placeholder="e.g. user@domain.com" style="width: 100%; box-sizing: border-box;" oninput="validateEmail()">
+					<input type="email" id="jsEmail" class="full-width" placeholder="e.g. user@domain.com" oninput="validateEmail()">
 					<div id="emailErr" class="js-error">Please enter a valid email address format (e.g. name@example.com).</div>
 				</div>
 
 				<div>
 					<label for="jsAge"><b>Age (18 - 99):</b></label>
-					<input type="number" id="jsAge" placeholder="Enter your age" style="width: 100%; box-sizing: border-box;" oninput="validateAge()">
+					<input type="number" id="jsAge" class="full-width" placeholder="Enter your age" oninput="validateAge()">
 					<div id="ageErr" class="js-error">Age must be a number between 18 and 99.</div>
 				</div>
 
-				<div style="display: flex; gap: 10px; margin-top: 5px;">
+				<div class="row mt-5">
 					<button type="submit">Submit & Validate</button>
-					<button type="reset" onclick="clearJsValidation()" style="background: #6c757d;">Clear</button>
+					<button type="reset" onclick="clearJsValidation()" class="btn-reset">Clear</button>
 				</div>
 			</form>
 		</div>
@@ -149,7 +139,7 @@
 			<h2>5. GET URL Query Parameter Processor in JS</h2>
 			<p>Submit the GET form below to pass parameters (e.g. <code>?themeColor=purple&font=24</code>). JavaScript parses <code>URLSearchParams</code> to apply them dynamically.</p>
 
-			<form method="GET" action="javascript.html" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px;">
+			<form method="GET" action="javascript.html" class="flex-row wrap-row align-center mt-10">
 				<label for="themeColor"><b>Select Color:</b></label>
 				<select id="themeColor" name="themeColor">
 					<option value="#6f42c1">Purple (#6f42c1)</option>
@@ -166,17 +156,17 @@
 				</select>
 
 				<button type="submit">Apply GET Request</button>
-				<button type="button" onclick="window.location.href='javascript.html'" style="background: #6c757d;">Reset GET</button>
+				<button type="button" onclick="window.location.href='javascript.html'" class="btn-reset">Reset GET</button>
 			</form>
 
-			<div id="getOutputCard" class="target-box" style="margin-top: 15px;">
-				<p id="getOutputText" style="margin: 0; font-weight: bold;">Status: Waiting for GET parameters...</p>
+			<div id="getOutputCard" class="target-box mt-15">
+				<p id="getOutputText" class="bold-zero-margin">Status: Waiting for GET parameters...</p>
 			</div>
 		</div>
 
 	</div>
 
-	<!-- JavaScript DOM, Slice, Validation & GET Script -->
+	<!-- JavaScript DOM, Splice, Validation & GET Script -->
 	<script>
 		// Function 1: Theme Switcher
 		function setTheme(bgColor, textColor, cardBg) {
@@ -213,37 +203,55 @@
 			}
 		}
 
-		// Function 5: String slice() Demo
-		function updateStringSlice() {
-			var str = document.getElementById('sliceTextInput').value;
-			var startVal = document.getElementById('sliceStart').value;
-			var endVal = document.getElementById('sliceEnd').value;
-			var resultBox = document.getElementById('stringSliceResult');
+		// Function 5: Array splice() Interactive Logic
+		var initialSpliceArray = ["HTML", "CSS", "JavaScript", "Python", "Cyber Security"];
+		var spliceArray = ["HTML", "CSS", "JavaScript", "Python", "Cyber Security"];
 
-			var start = startVal !== '' ? parseInt(startVal, 10) : 0;
-			var end = endVal !== '' ? parseInt(endVal, 10) : undefined;
-
-			var sliced = end !== undefined ? str.slice(start, end) : str.slice(start);
-			var endDisplay = end !== undefined ? end : 'undefined';
-			resultBox.innerText = 'Result: str.slice(' + start + ', ' + endDisplay + ') => "' + sliced + '"';
+		function renderSpliceState(removedItems, start, deleteCount, newItemsArr) {
+			document.getElementById('currentArrayDisplay').innerText = JSON.stringify(spliceArray);
+			document.getElementById('spliceReturnOutput').innerText = 'Returned (Removed Elements): ' + JSON.stringify(removedItems);
+			document.getElementById('spliceArrayOutput').innerText = 'Updated Array: ' + JSON.stringify(spliceArray);
 		}
 
-		function applySlicePreset(start, end) {
-			document.getElementById('sliceStart').value = start;
-			document.getElementById('sliceEnd').value = end !== undefined ? end : '';
-			updateStringSlice();
+		function resetSpliceArray() {
+			spliceArray = ["HTML", "CSS", "JavaScript", "Python", "Cyber Security"];
+			document.getElementById('spliceStart').value = 1;
+			document.getElementById('spliceDeleteCount').value = 1;
+			document.getElementById('spliceItems').value = '';
+			renderSpliceState([], 0, 0, []);
 		}
 
-		// Function 6: Array slice() Demo
-		var skillsArray = ["HTML", "CSS", "JavaScript", "Python", "Cyber Security"];
-		function updateArraySlice(start, end) {
-			var resultBox = document.getElementById('arraySliceResult');
-			var slicedArr = end !== undefined ? skillsArray.slice(start, end) : skillsArray.slice(start);
-			var endDisplay = end !== undefined ? end : 'undefined';
-			resultBox.innerText = 'Result: arr.slice(' + start + ', ' + endDisplay + ') => ' + JSON.stringify(slicedArr);
+		function executeCustomSplice() {
+			var start = parseInt(document.getElementById('spliceStart').value, 10);
+			var deleteCount = parseInt(document.getElementById('spliceDeleteCount').value, 10);
+			var itemsInput = document.getElementById('spliceItems').value.trim();
+
+			if (isNaN(start)) start = 0;
+			if (isNaN(deleteCount)) deleteCount = 0;
+
+			var itemsToAdd = itemsInput ? itemsInput.split(',').map(function(item) { return item.trim(); }) : [];
+
+			var args = [start, deleteCount].concat(itemsToAdd);
+			var removed = Array.prototype.splice.apply(spliceArray, args);
+
+			renderSpliceState(removed, start, deleteCount, itemsToAdd);
 		}
 
-		// Function 7: Form Validation Logic
+		function applySplicePreset(start, deleteCount, newItem) {
+			document.getElementById('spliceStart').value = start;
+			document.getElementById('spliceDeleteCount').value = deleteCount;
+			document.getElementById('spliceItems').value = newItem || '';
+			
+			if (newItem) {
+				var removed = spliceArray.splice(start, deleteCount, newItem);
+				renderSpliceState(removed, start, deleteCount, [newItem]);
+			} else {
+				var removed = spliceArray.splice(start, deleteCount);
+				renderSpliceState(removed, start, deleteCount, []);
+			}
+		}
+
+		// Function 6: Form Validation Logic
 		function validateName() {
 			var input = document.getElementById('jsName');
 			var err = document.getElementById('nameErr');
@@ -333,7 +341,7 @@
 			}
 		}
 
-		// Function 8: Parse GET URL Parameters on Page Load
+		// Function 7: Parse GET URL Parameters on Page Load
 		window.addEventListener('DOMContentLoaded', function() {
 			var urlParams = new URLSearchParams(window.location.search);
 			var colorParam = urlParams.get('themeColor');

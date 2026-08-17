@@ -5,12 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login Page</title>
 	<link rel="stylesheet" href="style.css">
-	<style>
-		.error-text { color: #dc3545; font-size: 13px; margin-top: 4px; display: none; }
-		.success-box { color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 12px; border-radius: 6px; display: none; margin-top: 15px; }
-		input.invalid { border-color: #dc3545 !important; }
-		input.valid { border-color: #28a745 !important; }
-	</style>
+    
 </head>
 <body>
 	<div class="container">
@@ -37,45 +32,44 @@
 				<b>✓ Login Successful!</b> Welcome back to Nandhakumar's Web Portal.
 			</div>
 
-			<form id="loginForm" onsubmit="return validateLoginForm(event)" novalidate style="display: grid; gap: 14px; max-width: 420px;">
+			<form id="loginForm" onsubmit="return validateLoginForm(event)" novalidate class="form-grid max-w-420">
 				<div>
-					<label for="email" style="display: block; font-weight: 600; margin-bottom: 4px;">Email / Username:</label>
-					<input id="email" name="email" type="text" placeholder="Enter email or username (min 3 chars)" style="width: 100%; box-sizing: border-box;" oninput="validateEmailField()">
+					<label for="email" class="label-block">Email / Username:</label>
+					<input id="email" name="email" type="text" class="full-width" placeholder="Enter email or username (min 3 chars)" oninput="validateEmailField()">
 					<div id="emailError" class="error-text">Please enter a valid email address or username (at least 3 characters).</div>
 				</div>
 
 				<div>
-					<label for="password" style="display: block; font-weight: 600; margin-bottom: 4px;">Password:</label>
-					<div style="position: relative;">
-						<input id="password" name="password" type="password" placeholder="Enter password (min 6 characters)" style="width: 100%; box-sizing: border-box; padding-right: 40px;" oninput="validatePasswordField()">
-						<button type="button" onclick="togglePassword()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 4px;" title="Show/Hide Password">👁️</button>
+					<label for="password" class="label-block">Password:</label>
+					<div class="position-relative">
+						<input id="password" name="password" type="password" class="full-width input-pad-right" placeholder="Enter password (min 6 characters)" oninput="validatePasswordField()">
+						<button type="button" onclick="togglePassword()" class="pwd-toggle" title="Show/Hide Password">👁️</button>
 					</div>
 					<div id="passwordError" class="error-text">Password must be at least 6 characters long.</div>
 				</div>
 
 				<div>
-					<label for="role" style="display: block; font-weight: 600; margin-bottom: 4px;">Select Role:</label>
-					<select id="role" name="role" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+					<label for="role" class="label-block">Select Role:</label>
+					<select id="role" name="role" class="select-full">
 						<option value="student">Student</option>
 						<option value="developer">Developer</option>
 						<option value="admin">Administrator</option>
 					</select>
 				</div>
-
-				<div style="display: flex; justify-content: space-between; align-items: center;">
-					<label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+				<div class="space-between">
+					<label class="checkbox-label">
 						<input type="checkbox" id="remember" name="remember">
 						<span>Remember Me</span>
 					</label>
 					<a href="#" onclick="alert('Password reset link sent to your registered email.'); return false;">Forgot Password?</a>
 				</div>
 
-				<div style="display: flex; gap: 10px; margin-top: 10px;">
-					<button type="submit" class="cta-btn" style="flex: 1;">Login</button>
-					<button type="reset" class="cta-btn" onclick="resetValidation()" style="background: #6c757d; flex: 1;">Reset</button>
+				<div class="form-actions">
+					<button type="submit" class="cta-btn flex-1">Login</button>
+					<button type="reset" class="cta-btn flex-1 btn-reset" onclick="resetValidation()">Reset</button>
 				</div>
 
-				<p style="margin-top: 15px; text-align: center;">Don't have an account? <a href="#" onclick="alert('Redirecting to Registration Page...'); return false;">Register / Sign Up</a></p>
+				<p class="mt-15 text-center">Don't have an account? <a href="#" onclick="alert('Redirecting to Registration Page...'); return false;">Register / Sign Up</a></p>
 			</form>
 		</div>
 	</div>

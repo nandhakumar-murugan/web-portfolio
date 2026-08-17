@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Form Validation Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Form Validation Demo</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="javascript.html">JavaScript</a>
+      <a href="login.html">Login</a>
+      <a href="project.html">Project</a>
+      <a href="flexbox.html">Flexbox</a>
+    </nav>
+
+    <div class="form-card">
+      <h2>Register</h2>
+
+      <div id="successMsg" class="success-box"><b>✓ Form valid!</b> Ready to submit.</div>
+
+      <form id="validationForm" class="form-grid" onsubmit="return handleValidationForm(event)" novalidate>
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" type="text" class="full-width" placeholder="e.g. Priya Rao" oninput="validateName()">
+          <div id="nameErr" class="error-text">Please enter at least 3 letters; numbers not allowed.</div>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" class="full-width" placeholder="you@example.com" oninput="validateEmail()">
+          <div id="emailErr" class="error-text">Enter a valid email address.</div>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" type="password" class="full-width" placeholder="Min 6 characters" oninput="validatePassword()">
+          <div id="passwordErr" class="error-text">Password must be at least 6 characters.</div>
+        </div>
+
+        <div>
+          <label for="age">Age</label>
+          <input id="age" type="number" class="full-width" placeholder="18 - 99" oninput="validateAge()">
+          <div id="ageErr" class="error-text">Age must be a number between 18 and 99.</div>
+        </div>
+
+        <label class="checkbox-row">
+          <input id="terms" type="checkbox" onchange="validateTerms()"> I agree to the terms
+        </label>
+        <div id="termsErr" class="error-text">You must agree to the terms.</div>
+
+        <div class="row">
+          <button type="submit" class="flex-1">Submit</button>
+          <button type="reset" class="flex-1 btn-reset" onclick="clearValidation()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function validateName() {
+      var input = document.getElementById('name');
+      var err = document.getElementById('nameErr');
+      var val = input.value.trim();
+      var ok = /^[A-Za-z\s]{3,}$/.test(val);
+      if (!ok && val.length > 0) { err.style.display='block'; input.classList.add('invalid'); input.classList.remove('valid'); return false; }
+      err.style.display='none'; input.classList.remove('invalid'); if (val.length>=3) input.classList.add('valid'); return true;
+    }
+
+    function validateEmail() {
+      var input = document.getElementById('email');
+      var err = document.getElementById('emailErr');
+      var val = input.value.trim();
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (!ok && val.length>0) { err.style.display='block'; input.classList.add('invalid'); input.classList.remove('valid'); return false; }
+      err.style.display='none'; input.classList.remove('invalid'); if (ok) input.classList.add('valid'); return true;
+    }
+
+    function validatePassword() {
+      var input = document.getElementById('password');
+      var err = document.getElementById('passwordErr');
+      var val = input.value;
+      if (val.length>0 && val.length<6) { err.style.display='block'; input.classList.add('invalid'); input.classList.remove('valid'); return false; }
+      err.style.display='none'; input.classList.remove('invalid'); if (val.length>=6) input.classList.add('valid'); return true;
+    }
+
+    function validateAge() {
+      var input = document.getElementById('age');
+      var err = document.getElementById('ageErr');
+      var val = parseInt(input.value,10);
+      if ((isNaN(val) || val<18 || val>99) && input.value.length>0) { err.style.display='block'; input.classList.add('invalid'); input.classList.remove('valid'); return false; }
+      err.style.display='none'; input.classList.remove('invalid'); if (!isNaN(val) && val>=18 && val<=99) input.classList.add('valid'); return true;
+    }
+
+    function validateTerms() {
+      var cb = document.getElementById('terms');
+      var err = document.getElementById('termsErr');
+      if (!cb.checked) { err.style.display='block'; return false; }
+      err.style.display='none'; return true;
+    }
+
+    function clearValidation() {
+      ['nameErr','emailErr','passwordErr','ageErr','termsErr'].forEach(function(id){ document.getElementById(id).style.display='none'; });
+      document.getElementById('successMsg').style.display='none';
+      ['name','email','password','age'].forEach(function(id){ document.getElementById(id).classList.remove('invalid','valid'); });
+      document.getElementById('terms').checked = false;
+    }
+
+    function handleValidationForm(e) {
+      e.preventDefault();
+      var v1 = validateName();
+      var v2 = validateEmail();
+      var v3 = validatePassword();
+      var v4 = validateAge();
+      var v5 = validateTerms();
+      if (!document.getElementById('name').value) { document.getElementById('nameErr').style.display='block'; document.getElementById('name').classList.add('invalid'); v1=false; }
+      if (!document.getElementById('email').value) { document.getElementById('emailErr').style.display='block'; document.getElementById('email').classList.add('invalid'); v2=false; }
+      if (!document.getElementById('password').value) { document.getElementById('passwordErr').style.display='block'; document.getElementById('password').classList.add('invalid'); v3=false; }
+      if (!document.getElementById('age').value) { document.getElementById('ageErr').style.display='block'; document.getElementById('age').classList.add('invalid'); v4=false; }
+      if (v1 && v2 && v3 && v4 && v5) { document.getElementById('successMsg').style.display='block'; return true; }
+      document.getElementById('successMsg').style.display='none'; return false;
+    }
+  </script>
+</body>
+</html>
