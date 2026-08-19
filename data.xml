@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<person>
-    <name>NANDHAKUMAR M</name>
-    <age>20</age>
-</person>
+<profile>
+    <person>
+        <name>NANDHAKUMAR M</name>
+        <age>20</age>
+        <college>KGiSL Institute of Technology</college>
+    </person>
+    <address>
+        <city>Coimbatore</city>
+        <state>Tamil Nadu</state>
+    </address>
+</profile>

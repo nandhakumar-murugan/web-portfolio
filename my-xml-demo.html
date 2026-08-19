@@ -9,7 +9,14 @@
                 let xml = new DOMParser().parseFromString(str, "text/xml");
                 let name = xml.querySelector("name").textContent;
                 let age = xml.querySelector("age").textContent;
-                document.getElementById("out").innerText = name + " is " + age + " years old";
+                let college = xml.querySelector("college").textContent;
+                let city = xml.querySelector("city").textContent;
+                let state = xml.querySelector("state").textContent;
+                
+                document.getElementById("out").innerHTML = 
+                    name + " is " + age + " years old.<br>" +
+                    "Studying at: " + college + "<br>" +
+                    "Location: " + city + ", " + state;
             });
     }
 </script>
