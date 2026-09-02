@@ -1,0 +1,59 @@
+profile {
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f7f9fc;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+person, address {
+    display: block;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+}
+
+name {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    color: #0057b8;
+    margin-bottom: 8px;
+}
+
+age, college, city, state {
+    display: block;
+    font-size: 15px;
+    color: #4a5568;
+    margin-bottom: 6px;
+}
+
+/* Adding labels using CSS pseudo-elements */
+age::before {
+    content: "Age: ";
+    font-weight: 600;
+    color: #2d3748;
+}
+
+college::before {
+    content: "College: ";
+    font-weight: 600;
+    color: #2d3748;
+}
+
+city::before {
+    content: "City: ";
+    font-weight: 600;
+    color: #2d3748;
+}
+
+state::before {
+    content: "State: ";
+    font-weight: 600;
+    color: #2d3748;
+}
