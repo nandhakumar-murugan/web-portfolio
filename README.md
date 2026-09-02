@@ -1,12 +1,18 @@
 # Web Development Portfolio
 
-Welcome to the official web development portfolio repository by **Nandhakumar Murugan**, a B.E. Computer Science and Cyber Security student at KGiSL Institute of Technology.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22259022.svg)](https://doi.org/10.5281/zenodo.22259022)
+[![Google Scholar](https://img.shields.io/badge/Google_Scholar-Nandhakumar_Murugan-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=ZcxswZYAAAAJ)
+[![Gemini Support](https://img.shields.io/badge/AI_Engine-Gemini_3.8_%7C_3.7_Flash-EA4335?logo=google&logoColor=white)](https://ai.google.dev/)
+
+Welcome to the official web development portfolio repository by **Nandhakumar Murugan**, Published AI Researcher and B.E. Computer Science and Engineering (Cybersecurity) student at KGiSL Institute of Technology.
 
 This project is a multi-page web platform demonstrating modern HTML5 semantics, CSS flexbox layouts, keyframe animations, multimedia players, JavaScript interactions, and responsive design techniques.
 
 ---
 
-## 🔗 Connect & Links
+## 🔗 Connect & Publications
+- **Published Research Paper**: [AgentShield: Zero-Trust Multi-Agent Guardrails (CERN DOI: 10.5281/zenodo.22259022)](https://doi.org/10.5281/zenodo.22259022)
+- **Google Scholar**: [Nandhakumar Murugan](https://scholar.google.com/citations?user=ZcxswZYAAAAJ)
 - **LinkedIn Profile**: [Nandhakumar Murugan](https://www.linkedin.com/in/nandhakumar-murugan-807a80286/)
 - **Official Website**: [Prema AI Labs](https://premaailabs.tech/)
 - **GitHub Repository**: [web-portfolio](https://github.com/nandhakumar-murugan/web-portfolio)
