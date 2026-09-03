@@ -2,6 +2,8 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22259022.svg)](https://doi.org/10.5281/zenodo.22259022)
 [![Google Scholar](https://img.shields.io/badge/Google_Scholar-Nandhakumar_Murugan-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=ZcxswZYAAAAJ)
+[![Google AI Forum](https://img.shields.io/badge/Google_AI_Forum-Approved_Showcase-34A853?logo=google&logoColor=white)](https://discuss.ai.google.dev/t/show-tell-gemini-antigravity-bridge-bidirectional-mcp-agent-orchestration-between-gemini-spark-deepmind-antigravity/180640/1)
+[![PyPI](https://img.shields.io/badge/PyPI-gemini--antigravity--bridge-3776AB?logo=pypi&logoColor=white)](https://pypi.org/project/gemini-antigravity-bridge/)
 [![Gemini Support](https://img.shields.io/badge/AI_Engine-Gemini_3.8_%7C_3.7_Flash-EA4335?logo=google&logoColor=white)](https://ai.google.dev/)
 
 Welcome to the official web development portfolio repository by **Nandhakumar Murugan**, Published AI Researcher and B.E. Computer Science and Engineering (Cybersecurity) student at KGiSL Institute of Technology.
@@ -12,6 +14,8 @@ This project is a multi-page web platform demonstrating modern HTML5 semantics, 
 
 ## 🔗 Connect & Publications
 - **Published Research Paper**: [AgentShield: Zero-Trust Multi-Agent Guardrails (CERN DOI: 10.5281/zenodo.22259022)](https://doi.org/10.5281/zenodo.22259022)
+- **Live LinkedIn Announcement**: [AgentShield Research Paper Official Release](https://lnkd.in/p/g9UqGD9Y)
+- **Google AI Developers Forum**: [Approved Showcase Topic](https://discuss.ai.google.dev/t/show-tell-gemini-antigravity-bridge-bidirectional-mcp-agent-orchestration-between-gemini-spark-deepmind-antigravity/180640/1)
 - **Google Scholar**: [Nandhakumar Murugan](https://scholar.google.com/citations?user=ZcxswZYAAAAJ)
 - **LinkedIn Profile**: [Nandhakumar Murugan](https://www.linkedin.com/in/nandhakumar-murugan-807a80286/)
 - **Official Website**: [Prema AI Labs](https://premaailabs.tech/)
